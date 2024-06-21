@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "fastapiapitemplate"
+version = "0.1.0"
+description = ""
+authors = ["Lucas Praciano <luskcct@gmail.com>"]
+documentation = "https://github.com/lspraciano/fastapiAPITemplate"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.104.1"
+dynaconf = "^3.2.4"
+psycopg2 = "^2.9.9"
+sqlalchemy = "^2.0.23"
+alembic = "^1.13.0"
+asyncpg = "^0.29.0"
+httpx = "^0.25.2"
+uvicorn = "0.20.0"
+toml = "^0.10.2"
+asgi-lifespan = "^2.1.0"
+pytest-asyncio = "^0.23.5"
+ultralytics = "^8.2.38"
+pillow = "^10.3.0"
+python-multipart = "^0.0.9"
+websockets = "^12.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+python_files = "tests.py test_*.py *_tests.py"
+asyncio_mode = "auto"
+filterwarnings = [
+    "ignore",
+    "ignore:.*U.*mode is deprecated:DeprecationWarning"
+]
