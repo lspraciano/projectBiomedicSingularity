@@ -10,4 +10,4 @@ class YoloResultSchema(BaseModel):
 
 
 class YoloTrackResultSchema(YoloResultSchema):
-    track_ids: list[int] = []
+    track_id_list: list[float] = []

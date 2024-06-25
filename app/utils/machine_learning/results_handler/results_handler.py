@@ -19,11 +19,11 @@ def get_yolo_result_schema(
             xyxyn=boxes_result.xyxyn.tolist(),
             xywhn=boxes_result.xywhn.tolist(),
             class_name_list=class_name_list,
-            track_schema=[]
+            track_id_list=[]
         )
 
         if hasattr(boxes_result, 'id') and boxes_result.id is not None:
-            track_schema.track_ids = boxes_result.id.cpu().tolist()
+            track_schema.track_id_list = boxes_result.id.cpu().tolist()
 
         return track_schema
 

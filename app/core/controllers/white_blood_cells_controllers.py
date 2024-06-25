@@ -1,3 +1,4 @@
+import torch
 from PIL import Image
 from ultralytics import YOLO
 from ultralytics.engine.results import Results
@@ -36,6 +37,8 @@ async def white_blood_cells_predict(
 async def white_blood_cells_track(
         white_blood_cells_yolo_model: YOLO,
         image: Image,
+        device: torch.device,
+        persist: bool = True,
         get_plot_image: bool = False,
 ) -> tuple[Image, YoloResultSchema] | None:
     image_from_array: Image = None
@@ -44,7 +47,9 @@ async def white_blood_cells_track(
         verbose=False,
         tracker="bytetrack.yaml",
         conf=0.5,
-        stream=True
+        stream=True,
+        device=device,
+        persist=persist
     )
 
     track_result: Results = next(iter(track_result_list))

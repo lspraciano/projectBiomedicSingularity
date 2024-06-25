@@ -23,11 +23,20 @@ ultralytics = "^8.2.38"
 pillow = "^10.3.0"
 python-multipart = "^0.0.9"
 websockets = "^12.0"
+torch = { version = "^2.0.1+cu118", source = "torch118" }
+torchvision = { version = "^0.15.2+cu118", source = "torch118" }
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "torch118"
+url = "https://download.pytorch.org/whl/cu118"
+priority = "explicit"
+
+
 
 [tool.pytest.ini_options]
 python_files = "tests.py test_*.py *_tests.py"
