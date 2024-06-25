@@ -1,29 +1,39 @@
 from PIL import Image
 from numpy import ndarray
-from ultralytics.engine.results import Results, Boxes
+from ultralytics.engine.results import Results
+
+from app.core.schemas.yolo_results_schema import YoloResultSchema, YoloTrackResultSchema
 
 
-def convert_result_to_dict(
+def get_yolo_result_schema(
         result: Results,
-        class_name_list: list
-) -> dict:
-    output_dict: dict = {
-        "class_name_list": [],
-        "detect_class_id_list": [],
-        "detect_object_confidence_list": [],
-        "xyxyn": [],
-        "xywhn": [],
-    }
+        class_name_list: list,
+        is_tracking: bool = False,
+) -> YoloResultSchema | YoloTrackResultSchema:
+    boxes_result = result.boxes
 
-    boxes_result: Boxes = result.boxes
+    if is_tracking:
+        track_schema: YoloTrackResultSchema = YoloTrackResultSchema(
+            detect_class_id_list=boxes_result.cls.tolist(),
+            detect_object_confidence_list=boxes_result.conf.tolist(),
+            xyxyn=boxes_result.xyxyn.tolist(),
+            xywhn=boxes_result.xywhn.tolist(),
+            class_name_list=class_name_list,
+            track_schema=[]
+        )
 
-    output_dict["class_name_list"] = class_name_list
-    output_dict["detect_class_id_list"] = boxes_result.cls.tolist()
-    output_dict["detect_object_confidence_list"] = boxes_result.conf.tolist()
-    output_dict["xyxyn"] = boxes_result.xyxyn.tolist()
-    output_dict["xywhn"] = boxes_result.xywhn.tolist()
+        if hasattr(boxes_result, 'id') and boxes_result.id is not None:
+            track_schema.track_ids = boxes_result.id.cpu().tolist()
 
-    return output_dict
+        return track_schema
+
+    return YoloResultSchema(
+        detect_class_id_list=boxes_result.cls.tolist(),
+        detect_object_confidence_list=boxes_result.conf.tolist(),
+        xyxyn=boxes_result.xyxyn.tolist(),
+        xywhn=boxes_result.xywhn.tolist(),
+        class_name_list=class_name_list,
+    )
 
 
 def get_plotted_image_from_result(

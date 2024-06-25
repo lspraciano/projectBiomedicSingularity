@@ -7,3 +7,7 @@ class YoloResultSchema(BaseModel):
     xyxyn: list[list[float]] = []
     xywhn: list[list[float]] = []
     class_name_list: dict = []
+
+
+class YoloTrackResultSchema(YoloResultSchema):
+    track_ids: list[int] = []
