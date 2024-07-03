@@ -9,7 +9,7 @@ ml_models_dict_path_structure: dict = {
     },
     "detection": {
         "white_blood_cells": {
-            "weights_file_name": "white_blood_cells.pt",
+            "weights_file_name": "white_blood_cells2.pt",
             "path": f"{detection_path}",
             "file_net_name": "",
             "net_input_size": 0,
