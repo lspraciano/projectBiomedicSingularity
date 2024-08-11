@@ -16,7 +16,48 @@
 
 ## 🕹️ Funcionalidades
 
-...
+Esta aplicação possui duas rotas principais, que são: a Root e a White Blood Cells.
+
+### 📌Root
+
+Através dessa rota você pode obter os metadados da aplicação, como versão e autor,
+por exemplo. Abaixo o path para acessar o único endpoint dela.
+
+```
+http://127.0.0.1:8000/v1/
+```
+
+### 📌White Blood Cells
+
+Nesta rota temos dois principais endpoints um Http e outro WebSocket.
+
+#### Http Predict
+
+Neste endpoint temos a possibilidade de o usuário enviar uma imagem
+para que a IA realizar detecções nela. Abaixo o path de acesso.
+
+```
+http://localhost:8000/v1/white-blood-cells/predict
+```
+
+#### WebSocket Track
+
+Neste endpoint podemos nos conectar com backend para enviarmos imagem
+no formato base64 e receber de voltar as detecções/rastreamento. É esperado
+o seguinte esquema
+
+```
+{
+    image_data: str
+    reset_persist: bool
+}
+```
+
+o path para realizar a conexão está listado abaixo
+
+```
+ws://localhost:8000/v1/white-blood-cells/track/ws
+```
 
 ## 🚀 Clonando Projeto
 
@@ -50,19 +91,34 @@ cd projectBiomedicSingularity
 poetry install --no-root
 ```
 
-3. Ative o ambiente virtual com o comando:
+3. Defina a variável de ambiente "SINGULARITY_APP_RUNNING_MODE" para o modo
+   de execução desejado. Por exemplo:
+
+No Windows:
+
+```bash
+setx BIOIADEMON_APP_RUNNING_MODE "development"
+```
+
+No Linux:
+
+```bash
+export BIOIADEMON_APP_RUNNING_MODE=development
+```
+
+4. Ative o ambiente virtual com o comando:
 
 ```bash
 poetry shell
 ```
 
-4. Inicie a aplicação com o comando:
+5. Inicie a aplicação com o comando:
 
 ```bash
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
-9. Você pode acessar a documentação das rotas da API usando o seguinte endereço:
+6. Você pode acessar a documentação das rotas da API usando o seguinte endereço:
 
 ```
 http://127.0.0.1:8000/docs
