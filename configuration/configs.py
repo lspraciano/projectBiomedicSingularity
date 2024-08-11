@@ -2,7 +2,7 @@ import os
 
 from dynaconf import Dynaconf, Validator
 
-APP_ENV_VAR_PREFIX: str = "FASTAPITEMPLATE"
+APP_ENV_VAR_PREFIX: str = "SINGULARITY"
 current_dir: str = os.path.dirname(__file__)
 root: str = os.path.abspath(
     os.path.join(

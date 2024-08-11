@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "fastapiapitemplate"
+name = "projectBiomedicSingularity"
 version = "0.1.0"
 description = ""
 authors = ["Lucas Praciano <luskcct@gmail.com>"]
-documentation = "https://github.com/lspraciano/fastapiAPITemplate"
+documentation = "https://github.com/lspraciano/projectBiomedicSingularity"
 readme = "README.md"
 
 [tool.poetry.dependencies]
