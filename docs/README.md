@@ -97,13 +97,13 @@ poetry install --no-root
 No Windows:
 
 ```bash
-setx BIOIADEMON_APP_RUNNING_MODE "development"
+setx SINGULARITY_APP_RUNNING_MODE "development"
 ```
 
 No Linux:
 
 ```bash
-export BIOIADEMON_APP_RUNNING_MODE=development
+export SINGULARITY_APP_RUNNING_MODE=development
 ```
 
 4. Ative o ambiente virtual com o comando:
